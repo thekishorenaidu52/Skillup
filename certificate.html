@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Certificate</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .certificate-border {
+      border: 2px solid #1a365d;
+      position: relative;
+      padding: 80px;
+      background: white;
+    }
+    .certificate-border::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 2px solid #1a365d;
+    }
+    .certificate-border::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid #1a365d;
+      z-index: 1;
+    }
+    .elegant-title {
+      font-family: 'Playfair Display', serif;
+      color: #1a365d;
+    }
+    .signature {
+      font-family: 'Dancing Script', cursive;
+    }
+    .certificate-content {
+      position: relative;
+      z-index: 2;
+    }
+    .certificate-seal {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #1a365d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      position: relative;
+    }
+    .certificate-seal::before {
+      content: '★';
+      font-size: 40px;
+      color: #1a365d;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <header class="bg-indigo-500 p-6 text-white flex justify-between items-center">
+    <h1 class="text-3xl font-bold">Course Certificate</h1>
+    <a href="index.php" class="text-white hover:text-gray-200 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      Home
+    </a>
+  </header>
+
+  <main class="max-w-5xl mx-auto mt-10 p-6">
+    <div class="bg-white rounded-lg shadow-lg p-8">
+      <div class="certificate-border">
+        <div class="certificate-content text-center">
+          <h2 class="elegant-title text-5xl mb-12">CERTIFICATE</h2>
+          <p class="text-xl mb-8 text-gray-700 italic">This certificate is presented to</p>
+          <p class="elegant-title text-4xl mb-12" id="userName"></p>
+          <p class="text-xl mb-8 text-gray-700">for successfully completing the course</p>
+          <p class="elegant-title text-3xl mb-16" id="courseName"></p>
+          
+          <div class="certificate-seal mb-12"></div>
+          
+          <div class="mt-16 flex justify-between items-end px-12">
+            <div class="text-left">
+              <p class="text-gray-600 mb-1">DATE</p>
+              <p class="font-semibold" id="completionDate"></p>
+            </div>
+            <div class="text-right">
+              <p class="signature text-3xl" id="instructorName"></p>
+              <p class="text-sm text-gray-600">Course Instructor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 text-center">
+        <button onclick="downloadCertificate()" class="bg-indigo-500 text-white px-8 py-4 rounded-lg hover:bg-indigo-600 text-lg font-semibold">
+          Download Certificate
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white text-center py-6 mt-16">
+    <p>&copy; 2025 SkillUp. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get user data from localStorage
+    const userName = localStorage.getItem('userName') || 'Student';
+    const courseName = localStorage.getItem('selectedCourse') || 'Course';
+
+    // Get instructor name based on course
+    function getInstructor(course) {
+      switch(course) {
+        case 'Full Stack Developer Bootcamp':
+          return 'Pradeep';
+        case 'Data Science Pro':
+          return 'Kishore';
+        case 'UI/UX Mastery':
+          return 'Sathvik';
+        case 'Digital Marketing':
+          return 'Sathvik and Manoj';
+        case 'Photography':
+          return 'Manoj';
+        case 'Mobile App Development':
+          return 'Pradeep and Kishore';
+        default:
+          return 'Course Instructor';
+      }
+    }
+
+    // Display user data
+    document.getElementById('userName').textContent = userName;
+    document.getElementById('courseName').textContent = courseName;
+    document.getElementById('instructorName').textContent = getInstructor(courseName);
+
+    // Set completion date to current date
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    document.getElementById('completionDate').textContent = formattedDate;
+
+    function downloadCertificate() {
+      // Create a canvas element
+      const canvas = document.createElement('canvas');
+      canvas.width = 1200;
+      canvas.height = 800;
+      const ctx = canvas.getContext('2d');
+
+      // Draw white background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw borders
+      ctx.strokeStyle = '#1a365d';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
+      ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
+      ctx.strokeRect(80, 80, canvas.width - 160, canvas.height - 160);
+
+      // Draw title
+      ctx.fillStyle = '#1a365d';
+      ctx.font = 'bold 60px "Playfair Display"';
+      ctx.textAlign = 'center';
+      ctx.fillText('CERTIFICATE', canvas.width / 2, 180);
+
+      // Draw "This certificate is presented to"
+      ctx.font = 'italic 24px Arial';
+      ctx.fillText('This certificate is presented to', canvas.width / 2, 250);
+
+      // Draw user name
+      ctx.font = 'bold 48px "Playfair Display"';
+      ctx.fillText(userName, canvas.width / 2, 330);
+
+      // Draw course completion text
+      ctx.font = '28px Arial';
+      ctx.fillText('for successfully completing the course', canvas.width / 2, 400);
+
+      // Draw course name
+      ctx.font = 'bold 36px "Playfair Display"';
+      ctx.fillText(courseName, canvas.width / 2, 460);
+
+      // Draw seal
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, 550, 50, 0, Math.PI * 2);
+      ctx.strokeStyle = '#1a365d';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.font = '40px Arial';
+      ctx.fillText('★', canvas.width / 2, 565);
+
+      // Draw date and signature
+      ctx.font = '24px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(`Date: ${formattedDate}`, 200, 700);
+      
+      ctx.textAlign = 'right';
+      ctx.font = '36px "Dancing Script"';
+      const instructor = getInstructor(courseName);
+      ctx.fillText(instructor, canvas.width - 200, 700);
+      ctx.font = '20px Arial';
+      ctx.fillText('Course Instructor', canvas.width - 200, 730);
+
+      // Convert to image and download
+      const link = document.createElement('a');
+      link.download = `${userName}-${courseName}-certificate.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+
+</body>
+</html> 

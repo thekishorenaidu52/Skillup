@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Instructor Information</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <header class="bg-indigo-500 p-6 text-white">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Course Instructor Information</h1>
+      <a href="index.php" class="text-white hover:text-gray-200 flex items-center ml-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto mt-10 p-6">
+    <div class="bg-white rounded shadow flex">
+      
+      <div class="w-1/3 p-4">
+        <img id="courseImage" src="" alt="Course Image" class="w-full h-full object-cover rounded-lg">
+      </div>
+
+      
+      <div class="w-2/3 p-6">
+        <h2 class="text-2xl font-semibold mb-4">Your Course Details</h2>
+        <div class="space-y-4">
+          <p><strong>Course:</strong> <span id="displayCourse"></span></p>
+          <p><strong>Instructor:</strong> <span id="displayInstructor"></span></p>
+          <p><strong>Your Name:</strong> <span id="displayName"></span></p>
+          <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+          <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+        </div>
+
+        <div class="flex justify-center mt-8 space-x-4">
+          <button id="startCourseBtn" class="bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600">Start Course</button>
+          <button id="refundBtn" class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600">Request Refund</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white text-center py-6 mt-16">
+    <p>&copy; 2025 SkillUp. All rights reserved.</p>
+  </footer>
+
+  <script>
+   
+    const course = localStorage.getItem('selectedCourse');
+    const name = localStorage.getItem('userName');
+    const email = localStorage.getItem('userEmail');
+    const phone = localStorage.getItem('userPhone');
+
+    
+    document.getElementById('displayCourse').innerText = course;
+    document.getElementById('displayName').innerText = name;
+    document.getElementById('displayEmail').innerText = email;
+    document.getElementById('displayPhone').innerText = phone;
+
+    
+    let instructor = '';
+    let imageSrc = '';
+    switch(course) {
+      case 'Full Stack Developer Bootcamp':
+        instructor = 'Pradeep';
+        imageSrc = 'src/1.png';
+        break;
+      case 'Data Science Pro':
+        instructor = 'Kishore';
+        imageSrc = 'src/2 (2).png';
+        break;
+      case 'UI/UX Mastery':
+        instructor = 'Sathvik';
+        imageSrc = 'src/3.jpg';
+        break;
+      case 'Digital Marketing':
+        instructor = 'Sathvik and Manoj';
+        imageSrc = 'src/4.jpg';
+        break;
+      case 'Photography':
+        instructor = 'Manoj';
+        imageSrc = 'src/5.jpg';
+        break;
+      case 'Mobile App Development':
+        instructor = 'Pradeep and Kishore';
+        imageSrc = 'src/6.webp';
+        break;
+    }
+    document.getElementById('displayInstructor').innerText = instructor;
+    document.getElementById('courseImage').src = imageSrc;
+
+    
+    document.getElementById('startCourseBtn').addEventListener('click', function() {
+      let coursePage = '';
+      switch(course) {
+        case 'Full Stack Developer Bootcamp':
+          coursePage = 'fullstack.html';
+          break;
+        case 'Data Science Pro':
+          coursePage = 'datascience.html';
+          break;
+        case 'UI/UX Mastery':
+          coursePage = 'uiux.html';
+          break;
+        case 'Digital Marketing':
+          coursePage = 'digitalmarketing.html';
+          break;
+        case 'Photography':
+          coursePage = 'photography.html';
+          break;
+        case 'Mobile App Development':
+          coursePage = 'mobileapp.html';
+          break;
+        default:
+          coursePage = 'fullstack.html';
+      }
+      window.location.href = coursePage;
+    });
+
+    
+    document.getElementById('refundBtn').addEventListener('click', function() {
+      if (confirm('Are you sure you want to request a refund? This will cancel your enrollment.')) {
+        
+        localStorage.removeItem('selectedCourse');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userPhone');
+        
+        
+        window.location.href = 'enroled.html';
+      }
+    });
+  </script>
+</body>
+</html> 
