@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillUp - Explore Courses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4158D0 0%, #6C63FF 50%, #FFB347 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 16s ease-in-out infinite;
+      position: relative;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #2563eb, #e11d48, #f59e42, #4f46e5);
+      background-size: 200% 200%;
+      animation: gradientText 8s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    @keyframes gradientText {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .glass {
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="bg-white/80 shadow-md p-6 flex justify-between items-center sticky top-0 z-50 animate__animated animate__fadeInDown">
+    <h1 class="text-3xl font-extrabold gradient-text tracking-tight">SkillUp</h1>
+    <a href="index.php" class="text-blue-600 hover:underline font-semibold">Home</a>
+  </header>
+
+  <main class="flex-1 py-16 px-6 max-w-7xl mx-auto animate__animated animate__fadeInUp">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 gradient-text">Popular Courses</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <div class="glass flex flex-col items-center rounded-2xl shadow-xl p-6">
+        <img class="w-24 h-24 object-contain mb-4 drop-shadow-lg" src="src/1.png" alt="Web Development">
+        <h3 class="text-xl font-bold mb-2 gradient-text">Web Development</h3>
+        <p class="mb-2 text-gray-700">Learn to build websites using HTML, CSS, JavaScript, and React.</p>
+        <ul class="mb-2 text-sm text-gray-600 list-disc list-inside">
+          <li><b>Duration:</b> 12 weeks</li>
+          <li><b>Level:</b> Beginner to Advanced</li>
+          <li><b>Skills:</b> HTML, CSS, JavaScript, React, Responsive Design</li>
+          <li><b>Instructor:</b> Pradeep</li>
+        </ul>
+        <a href="enroled.html" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-5 py-2 rounded-full hover:from-blue-700 hover:to-indigo-600 transition font-semibold shadow">Enroll</a>
+      </div>
+      <div class="glass flex flex-col items-center rounded-2xl shadow-xl p-6">
+        <img class="w-24 h-24 object-contain mb-4 drop-shadow-lg" src="src/2 (2).png" alt="Data Science">
+        <h3 class="text-xl font-bold mb-2 gradient-text">Data Science</h3>
+        <p class="mb-2 text-gray-700">Extract meaningful knowledge from data using scientific methods.</p>
+        <ul class="mb-2 text-sm text-gray-600 list-disc list-inside">
+          <li><b>Duration:</b> 10 weeks</li>
+          <li><b>Level:</b> Intermediate</li>
+          <li><b>Skills:</b> Python, Pandas, Machine Learning, Data Visualization</li>
+          <li><b>Instructor:</b> Kishore</li>
+        </ul>
+        <a href="enroled.html" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-5 py-2 rounded-full hover:from-blue-700 hover:to-indigo-600 transition font-semibold shadow">Enroll</a>
+      </div>
+      <div class="glass flex flex-col items-center rounded-2xl shadow-xl p-6">
+        <img class="w-24 h-24 object-contain mb-4 drop-shadow-lg" src="src/3.jpg" alt="UI/UX">
+        <h3 class="text-xl font-bold mb-2 gradient-text">UI/UX</h3>
+        <p class="mb-2 text-gray-700">Design stunning interfaces with Figma and Adobe XD.</p>
+        <ul class="mb-2 text-sm text-gray-600 list-disc list-inside">
+          <li><b>Duration:</b> 8 weeks</li>
+          <li><b>Level:</b> Beginner</li>
+          <li><b>Skills:</b> Figma, Adobe XD, Wireframing, Prototyping</li>
+          <li><b>Instructor:</b> Sathvik</li>
+        </ul>
+        <a href="enroled.html" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-5 py-2 rounded-full hover:from-blue-700 hover:to-indigo-600 transition font-semibold shadow">Enroll</a>
+      </div>
+      <div class="glass flex flex-col items-center rounded-2xl shadow-xl p-6">
+        <img class="w-24 h-24 object-contain mb-4 drop-shadow-lg" src="src/4.jpg" alt="Digital Marketing">
+        <h3 class="text-xl font-bold mb-2 gradient-text">Digital Marketing</h3>
+        <p class="mb-2 text-gray-700">Become an expert in SEO, social media marketing, and Google Ads.</p>
+        <ul class="mb-2 text-sm text-gray-600 list-disc list-inside">
+          <li><b>Duration:</b> 6 weeks</li>
+          <li><b>Level:</b> Beginner to Intermediate</li>
+          <li><b>Skills:</b> SEO, Google Ads, Social Media, Analytics</li>
+          <li><b>Instructor:</b> Sathvik & Manoj</li>
+        </ul>
+        <a href="enroled.html" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-5 py-2 rounded-full hover:from-blue-700 hover:to-indigo-600 transition font-semibold shadow">Enroll</a>
+      </div>
+      <div class="glass flex flex-col items-center rounded-2xl shadow-xl p-6">
+        <img class="w-24 h-24 object-contain mb-4 drop-shadow-lg" src="src/5.jpg" alt="Photography">
+        <h3 class="text-xl font-bold mb-2 gradient-text">Photography</h3>
+        <p class="mb-2 text-gray-700">Learn the art of photography, editing, and camera techniques.</p>
+        <ul class="mb-2 text-sm text-gray-600 list-disc list-inside">
+          <li><b>Duration:</b> 5 weeks</li>
+          <li><b>Level:</b> Beginner</li>
+          <li><b>Skills:</b> DSLR, Editing, Lighting, Composition</li>
+          <li><b>Instructor:</b> Manoj</li>
+        </ul>
+        <a href="enroled.html" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-5 py-2 rounded-full hover:from-blue-700 hover:to-indigo-600 transition font-semibold shadow">Enroll</a>
+      </div>
+      <div class="glass flex flex-col items-center rounded-2xl shadow-xl p-6">
+        <img class="w-24 h-24 object-contain mb-4 drop-shadow-lg" src="src/6.webp" alt="Mobile App Development">
+        <h3 class="text-xl font-bold mb-2 gradient-text">Mobile App Development</h3>
+        <p class="mb-2 text-gray-700">Build mobile apps using Swift, Java, and Flutter.</p>
+        <ul class="mb-2 text-sm text-gray-600 list-disc list-inside">
+          <li><b>Duration:</b> 10 weeks</li>
+          <li><b>Level:</b> Intermediate</li>
+          <li><b>Skills:</b> Swift, Java, Flutter, UI/UX for Mobile</li>
+          <li><b>Instructor:</b> Pradeep & Kishore</li>
+        </ul>
+        <a href="enroled.html" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-5 py-2 rounded-full hover:from-blue-700 hover:to-indigo-600 transition font-semibold shadow">Enroll</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white/80 text-center py-6 mt-16 border-t animate__animated animate__fadeInUp">
+    <p class="text-gray-600">&copy; 2025 SkillUp. All rights reserved.</p>
+  </footer>
+</body>
+</html> 

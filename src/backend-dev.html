@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Development - Learning Material</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9fafb !important;
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            border-left: 4px solid #6366f1;
+        }
+        .topic-title {
+            color: #4f46e5;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 16px 0;
+        }
+        .topic-description {
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 16px 0;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .note-box {
+            background: #f8fafc;
+            border-left: 4px solid #fbbf24;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .list-item:before {
+            content: "•";
+            color: #4f46e5;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .timer-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .timer-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #4f46e5;
+            transition: width 1s linear;
+        }
+        .review-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+        }
+        .review-button.enabled {
+            opacity: 1;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../fullstack-reading.html" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.707 3.293a1 1 0 00-1.414 0l-6 6a1 1 0 000 1.414l6 6a1 1 0 001.414-1.414L3.414 11H16a1 1 0 100-2H3.414l4.293-4.293a1 1 0 000-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <h1 class="ml-4 text-xl font-bold text-gray-900">Backend Development</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="timer-bar w-48">
+                        <div class="timer-fill"></div>
+                    </div>
+                    <button id="review-button" class="review-button px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Mark as Reviewed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="prose prose-indigo max-w-none">
+            <h1 style="font-size: 2.5rem; color: #4f46e5; margin-bottom: 2rem; text-align: center;">Backend Development</h1>
+
+            <!-- Server-side Programming Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">1. Server-side Programming</h2>
+                
+                <div class="topic-description">
+                    Learn server-side programming concepts and implementation using popular technologies.
+                </div>
+
+                <div class="topic-title">Node.js Fundamentals</div>
+                <div class="code-example">
+// Basic Node.js Server
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+});
+
+server.listen(3000, 'localhost', () => {
+    console.log('Server running at http://localhost:3000/');
+});</div>
+
+                <div class="topic-title">Express.js Framework</div>
+                <div class="code-example">
+// Express.js REST API
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.get('/api/users', (req, res) => {
+    res.json({ users: [] });
+});
+
+app.post('/api/users', (req, res) => {
+    // Create new user
+    res.status(201).json({ message: 'User created' });
+});
+
+app.listen(3000, () => {
+    console.log('API Server running on port 3000');
+});</div>
+            </section>
+
+            <!-- Database Management Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">2. Database Management</h2>
+
+                <div class="topic-title">SQL Databases</div>
+                <div class="code-example">
+-- SQL Database Operations
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Query Examples
+SELECT * FROM users WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+
+INSERT INTO users (username, email) VALUES ('john_doe', 'john@example.com');</div>
+
+                <div class="topic-title">MongoDB NoSQL</div>
+                <div class="code-example">
+// MongoDB Operations
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    createdAt: { type: Date, default: Date.now }
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Create user
+await User.create({
+    username: 'john_doe',
+    email: 'john@example.com'
+});</div>
+            </section>
+
+            <!-- API Development Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">3. API Development</h2>
+
+                <div class="topic-title">RESTful API Design</div>
+                <div class="code-example">
+// RESTful API Endpoints
+app.get('/api/products', getProducts);
+app.post('/api/products', createProduct);
+app.get('/api/products/:id', getProductById);
+app.put('/api/products/:id', updateProduct);
+app.delete('/api/products/:id', deleteProduct);
+
+// Example Implementation
+async function getProducts(req, res) {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+}</div>
+
+                <div class="topic-title">Authentication & Authorization</div>
+                <div class="code-example">
+// JWT Authentication
+const jwt = require('jsonwebtoken');
+
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    
+    if (!token) return res.sendStatus(401);
+    
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+};</div>
+            </section>
+
+            <!-- Security Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">4. Security Best Practices</h2>
+
+                <div class="topic-title">Input Validation</div>
+                <div class="code-example">
+// Input Validation Example
+const { body, validationResult } = require('express-validator');
+
+app.post('/api/users',
+    body('email').isEmail(),
+    body('password').isLength({ min: 8 }),
+    (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        // Process valid input
+    });</div>
+
+                <div class="note-box">
+                    <strong>Security Checklist:</strong>
+                    <ul style="margin-top: 8px;">
+                        <li>Implement proper input validation</li>
+                        <li>Use HTTPS for all communications</li>
+                        <li>Hash passwords using bcrypt</li>
+                        <li>Implement rate limiting</li>
+                        <li>Use security headers</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Timer duration in seconds (1 minute)
+        const TIMER_DURATION = 60;
+        let timeElapsed = 0;
+        let timer = null;
+
+        // Get elements
+        const timerFill = document.querySelector('.timer-fill');
+        const reviewButton = document.getElementById('review-button');
+
+        // Start timer
+        timer = setInterval(() => {
+            timeElapsed++;
+            const progress = (timeElapsed / TIMER_DURATION) * 100;
+            timerFill.style.width = `${Math.min(progress, 100)}%`;
+
+            if (timeElapsed >= TIMER_DURATION) {
+                clearInterval(timer);
+                reviewButton.classList.add('enabled');
+            }
+        }, 1000);
+
+        // Handle review button click
+        reviewButton.addEventListener('click', function() {
+            if (timeElapsed >= TIMER_DURATION) {
+                const userEmail = sessionStorage.getItem('userEmail') || '';
+                sessionStorage.setItem(`backend-dev_${userEmail}`, 'completed');
+                reviewButton.textContent = 'Reviewed ✓';
+                reviewButton.disabled = true;
+                
+                // Notify parent window
+                window.opener.postMessage({ type: 'moduleReviewed' }, '*');
+            }
+        });
+    </script>
+</body>
+</html> 

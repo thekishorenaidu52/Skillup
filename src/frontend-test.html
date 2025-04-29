@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Development Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        .options {
+            margin-top: 1rem;
+        }
+        .option {
+            display: block;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .option:hover {
+            border-color: #4f46e5;
+            background: #f3f4f6;
+        }
+        .option input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        .button {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background: #4338ca;
+        }
+        #results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center mb-8">Frontend Development Test</h1>
+        <div class="timer" id="timer">Time Remaining: 45:00</div>
+        
+        <div id="quiz">
+            <!-- Questions will be inserted here -->
+        </div>
+        
+        <div class="text-center mt-8">
+            <button id="submit" class="button">Submit Test</button>
+        </div>
+        
+        <div id="results">
+            <h2 class="text-2xl font-bold mb-4">Test Results</h2>
+            <p class="text-xl mb-4">Your score: <span id="score">0</span>%</p>
+            <p id="feedback" class="mb-6"></p>
+            <a href="frontend-dev.html" class="button">Back to Learning Material</a>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the purpose of semantic HTML elements?",
+                options: [
+                    "To make the text bold and italic",
+                    "To provide meaning and structure to web content",
+                    "To add styling to the webpage",
+                    "To improve website loading speed"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which CSS property is used to create a flexible box layout?",
+                options: [
+                    "flex-box",
+                    "grid",
+                    "display: flex",
+                    "box-model"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the purpose of the 'async' attribute in JavaScript?",
+                options: [
+                    "To make the script execute faster",
+                    "To load the script asynchronously without blocking page rendering",
+                    "To prevent script execution",
+                    "To synchronize multiple scripts"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which CSS unit is relative to the viewport width?",
+                options: [
+                    "px",
+                    "em",
+                    "rem",
+                    "vw"
+                ],
+                correct: 3
+            },
+            {
+                question: "What is the purpose of the localStorage API?",
+                options: [
+                    "To store data temporarily in the browser",
+                    "To store data permanently on the server",
+                    "To cache website assets",
+                    "To improve website performance"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which method is used to prevent the default behavior of an event in JavaScript?",
+                options: [
+                    "stopPropagation()",
+                    "preventDefault()",
+                    "cancelEvent()",
+                    "stopDefault()"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the purpose of media queries in CSS?",
+                options: [
+                    "To play media files",
+                    "To create responsive layouts",
+                    "To optimize images",
+                    "To handle form submissions"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which JavaScript method is used to add an element to the end of an array?",
+                options: [
+                    "append()",
+                    "add()",
+                    "push()",
+                    "insert()"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the purpose of the CSS 'z-index' property?",
+                options: [
+                    "To set element width",
+                    "To control element stacking order",
+                    "To add animations",
+                    "To change text color"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which HTML attribute is used to make form inputs required?",
+                options: [
+                    "mandatory",
+                    "required",
+                    "validate",
+                    "important"
+                ],
+                correct: 1
+            }
+        ];
+
+        let timeLeft = 45 * 60; // 45 minutes in seconds
+        const timerElement = document.getElementById('timer');
+        const quizElement = document.getElementById('quiz');
+        const submitButton = document.getElementById('submit');
+        const resultsElement = document.getElementById('results');
+        const scoreElement = document.getElementById('score');
+        const feedbackElement = document.getElementById('feedback');
+
+        // Timer function
+        const timer = setInterval(() => {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                submitTest();
+            }
+        }, 1000);
+
+        // Render questions
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <h3 class="font-semibold">Question ${index + 1}: ${q.question}</h3>
+                <div class="options">
+                    ${q.options.map((option, i) => `
+                        <label class="option">
+                            <input type="radio" name="q${index}" value="${i}">
+                            ${option}
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+            quizElement.appendChild(questionDiv);
+        });
+
+        // Submit test
+        submitButton.addEventListener('click', submitTest);
+
+        function submitTest() {
+            clearInterval(timer);
+            let score = 0;
+            
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === q.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            scoreElement.textContent = percentage;
+
+            // Generate feedback
+            let feedback = '';
+            if (percentage >= 90) {
+                feedback = 'Excellent! You have a strong understanding of frontend development concepts.';
+            } else if (percentage >= 70) {
+                feedback = 'Good job! You have a solid foundation, but there\'s room for improvement.';
+            } else if (percentage >= 50) {
+                feedback = 'You\'ve passed, but we recommend reviewing the material to strengthen your knowledge.';
+            } else {
+                feedback = 'We suggest thoroughly reviewing the learning material before retaking the test.';
+            }
+            feedbackElement.textContent = feedback;
+
+            // Show results
+            quizElement.style.display = 'none';
+            submitButton.style.display = 'none';
+            resultsElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html> 

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,111 +6,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SkillUp Enrollment</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4158D0 0%, #6C63FF 50%, #FFB347 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 16s ease-in-out infinite;
+      position: relative;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .glass {
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+  </style>
+  <script>
+  <?php if (isset($_SESSION['username'])): ?>
+  localStorage.setItem('userName', <?= json_encode($_SESSION['username']) ?>);
+  <?php endif; ?>
+  <?php if (isset($_SESSION['email'])): ?>
+  localStorage.setItem('userEmail', <?= json_encode($_SESSION['email']) ?>);
+  <?php endif; ?>
+  <?php if (isset($_SESSION['phone'])): ?>
+  localStorage.setItem('userPhone', <?= json_encode($_SESSION['phone']) ?>);
+  <?php endif; ?>
+  </script>
 </head>
-<body class="bg-gray-100 font-sans">
-
-  
-  <header class="bg-indigo-500 shadow-md p-6 text-white sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <h1 class="text-3xl font-bold text-white">SkillUp</h1>
-      <div class="flex items-center space-x-6">
-        <nav class="space-x-6 text-white">
-          <a href="#courses" class="hover:underline">Courses</a>
-          <a href="#certifications" class="hover:underline">Certifications</a>
-          <a href="#contact" class="hover:underline">Contact</a>
-        </nav>
-        <a href="index.php" class="text-white hover:text-gray-200 flex items-center ml-6">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-          </svg>
-          Home
-        </a>
-      </div>
-    </div>
+<body>
+  <header class="bg-white/80 shadow-md p-6 flex justify-between items-center sticky top-0 z-50">
+    <h1 class="text-3xl font-extrabold gradient-text tracking-tight">SkillUp</h1>
+    <a href="index.php" class="text-blue-600 hover:underline font-semibold">Home</a>
   </header>
 
-  
-  <section id="enrollSection" class="max-w-xl mx-auto mt-12 bg-white p-8 rounded-lg shadow-lg">
-    <h2 class="text-2xl font-bold text-center mb-6 text-indigo-600">Enroll in a Course</h2>
-    <form id="enrollForm" class="space-y-4">
-      <input type="text" id="name" placeholder="Full Name" class="w-full p-3 border rounded" required>
-      <input type="email" id="email" placeholder="Email Address" class="w-full p-3 border rounded" required>
-      <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-3 border rounded" required>
-      <select id="course" class="w-full p-3 border rounded" required>
-        <option value="">Select Course</option>
-        <option value="Full Stack Developer Bootcamp">Full Stack Developer Bootcamp</option>
-        <option value="Data Science Pro">Data Science Pro</option>
-        <option value="UI/UX Mastery">UI/UX Mastery</option>
-        <option value="Digital Marketing">Digital Marketing</option>
-        <option value="Photography">Photography</option>
-        <option value="Mobile App Development">Mobile App Development</option>
-      </select>
-      <button type="submit" class="w-full bg-indigo-600 text-white p-3 rounded hover:bg-indigo-700">Enroll Now</button>
-    </form>
-  </section>
-
-  
-  <section id="courseSection" class="hidden max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 p-6">
-    
-    <div class="bg-gray-300 rounded-lg overflow-hidden shadow-lg">
-      <img src="src/1.png" alt="Course Image" class="w-full h-full object-cover" />
-    </div>
-
-   
-    <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
-      <h2 class="text-3xl font-bold text-gray-800" id="courseName">Course Title</h2>
-      <p class="text-gray-600">Master full-stack web development using HTML, CSS, JS, Node.js, and React.</p>
-      <div class="space-y-2 text-gray-700 text-lg">
-        <p><strong>User Name:</strong> <span id="displayName"></span></p>
-        <p><strong>Phone Number:</strong> <span id="displayPhone"></span></p>
-        <p><strong>Email Address:</strong> <span id="displayEmail"></span></p>
-        <p><strong>Course Instructor:</strong> Pradeep</p>
+  <main class="flex-1 py-16 px-6 max-w-4xl mx-auto animate__animated animate__fadeInUp">
+    <section id="enrollSection" class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-center mb-6 text-indigo-600">Enroll in a Course</h2>
+      <form id="enrollForm" class="space-y-4">
+        <input type="text" id="name" placeholder="Full Name" class="w-full p-3 border rounded" required>
+        <input type="email" id="email" placeholder="Email Address" class="w-full p-3 border rounded" required>
+        <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-3 border rounded" required>
+        <select id="course" class="w-full p-3 border rounded" required>
+          <option value="">Select Course</option>
+          <option value="Full Stack Developer Bootcamp">Full Stack Developer Bootcamp</option>
+          <option value="Data Science Pro">Data Science Pro</option>
+          <option value="UI/UX Mastery">UI/UX Mastery</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+          <option value="Photography">Photography</option>
+          <option value="Mobile App Development">Mobile App Development</option>
+        </select>
+        <div id="coursePreview" class="hidden mt-4 p-4 rounded-lg glass flex flex-col items-center text-center">
+          <img id="previewImg" src="" alt="Preview Image" class="w-40 h-40 object-contain mb-2" />
+          <h3 id="previewName" class="text-xl font-bold"></h3>
+          <p id="previewDesc" class="text-gray-600"></p>
+          <p id="previewInstructor" class="text-gray-700 font-medium"></p>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white p-3 rounded hover:bg-indigo-700">Enroll Now</button>
+      </form>
+    </section>
+    <section id="courseSection" class="hidden grid grid-cols-1 md:grid-cols-2 gap-10 p-6 glass mt-12">
+      <div class="rounded-lg overflow-hidden shadow-lg flex items-center justify-center bg-white/60">
+        <img id="courseImg" src="" alt="Course Image" class="w-64 h-64 object-contain" />
       </div>
-      <div class="text-lg text-green-600 font-medium">
-        You are successfully registered for this course!
+      <div class="rounded-lg shadow-lg p-8 space-y-6 bg-white/80">
+        <h2 class="text-3xl font-bold text-gray-800" id="courseName">Course Title</h2>
+        <p class="text-gray-600" id="courseDesc">Course Description</p>
+        <div class="space-y-2 text-gray-700 text-lg">
+          <p><strong>User Name:</strong> <span id="displayName"></span></p>
+          <p><strong>Phone Number:</strong> <span id="displayPhone"></span></p>
+          <p><strong>Email Address:</strong> <span id="displayEmail"></span></p>
+          <p><strong>Course Instructor:</strong> <span id="courseInstructor"></span></p>
+        </div>
+        <div class="text-lg text-green-600 font-medium">
+          You are successfully registered for this course!
+        </div>
+        <div class="flex gap-4 mt-6">
+          <button id="startCourseBtn" class="bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600">Start Course</button>
+          <button id="resetEnrollmentBtn" class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600">Reset Enrollment</button>
+        </div>
       </div>
-      <div class="flex gap-4 mt-6">
-        <button id="startCourseBtn" class="bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600">Start Course</button>
-        <button class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600">Request Refund</button>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  
-  <footer class="bg-gray-800 text-white text-center py-6 mt-16">
-    <p>&copy; 2025 SkillUp. All rights reserved.</p>
+  <footer class="bg-white/80 text-center py-6 mt-16 border-t animate__animated animate__fadeInUp">
+    <p class="text-gray-600">&copy; 2025 SkillUp. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript -->
   <script>
-    document.getElementById('enrollForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const course = document.getElementById('course').value;
-
-      if (!course) {
-        alert("Please select a course.");
-        return;
+    // Course data for display
+    const courseData = {
+      "Full Stack Developer Bootcamp": {
+        img: "src/1.png",
+        desc: "Master full-stack web development using HTML, CSS, JS, Node.js, and React.",
+        instructor: "Pradeep"
+      },
+      "Data Science Pro": {
+        img: "src/2 (2).png",
+        desc: "Extract meaningful knowledge from data using Python, Pandas, and Machine Learning.",
+        instructor: "Kishore"
+      },
+      "UI/UX Mastery": {
+        img: "src/3.jpg",
+        desc: "Design stunning interfaces with Figma and Adobe XD.",
+        instructor: "Sathvik"
+      },
+      "Digital Marketing": {
+        img: "src/4.jpg",
+        desc: "Become an expert in SEO, social media marketing, and Google Ads.",
+        instructor: "Sathvik & Manoj"
+      },
+      "Photography": {
+        img: "src/5.jpg",
+        desc: "Learn the art of photography, editing, and camera techniques.",
+        instructor: "Manoj"
+      },
+      "Mobile App Development": {
+        img: "src/6.webp",
+        desc: "Build mobile apps using Swift, Java, and Flutter.",
+        instructor: "Pradeep & Kishore"
       }
+    };
 
-      // Store the course selection in localStorage
-      localStorage.setItem('selectedCourse', course);
-      localStorage.setItem('userName', name);
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userPhone', phone);
+    // Get user and course info from localStorage
+    const selectedCourse = localStorage.getItem('selectedCourse');
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+    const userPhone = localStorage.getItem('userPhone');
 
-      // Redirect to forStart.html
-      window.location.href = 'forStart.html';
-    });
+    if (selectedCourse && courseData[selectedCourse]) {
+      document.getElementById('courseImg').src = courseData[selectedCourse].img;
+      document.getElementById('courseName').innerText = selectedCourse;
+      document.getElementById('courseDesc').innerText = courseData[selectedCourse].desc;
+      document.getElementById('courseInstructor').innerText = courseData[selectedCourse].instructor;
+    }
+    document.getElementById('displayName').innerText = userName || '';
+    document.getElementById('displayEmail').innerText = userEmail || '';
+    document.getElementById('displayPhone').innerText = userPhone || '';
 
     document.getElementById('startCourseBtn').addEventListener('click', function() {
-      const course = document.getElementById('courseName').innerText;
       let coursePage = '';
-      
-      switch(course) {
+      switch(selectedCourse) {
         case 'Full Stack Developer Bootcamp':
           coursePage = 'fullstack.html';
           break;
@@ -131,10 +177,83 @@
         default:
           coursePage = 'fullstack.html';
       }
-      
       window.location.href = coursePage;
     });
-  </script>
 
+    document.getElementById('enrollForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const course = document.getElementById('course').value;
+
+      // Always update localStorage with the latest enrollment details
+      localStorage.setItem('userName', name);
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPhone', phone);
+      localStorage.setItem('selectedCourse', course);
+      localStorage.setItem('isEnrolled', 'true');
+
+      // Add course to enrolledCourses array in localStorage
+      let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses') || '[]');
+      if (!enrolledCourses.includes(course)) {
+        enrolledCourses.push(course);
+        localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
+      }
+
+      // Show confirmation/details section and hide the form
+      document.getElementById('enrollSection').classList.add('hidden');
+      document.getElementById('courseSection').classList.remove('hidden');
+    });
+
+    // On page load, show form if not enrolled, else show confirmation
+    if (localStorage.getItem('isEnrolled') === 'true') {
+      document.getElementById('enrollSection').classList.add('hidden');
+      document.getElementById('courseSection').classList.remove('hidden');
+    } else {
+      document.getElementById('enrollSection').classList.remove('hidden');
+      document.getElementById('courseSection').classList.add('hidden');
+    }
+
+    // Reset Enrollment button logic
+    const resetEnrollmentBtn = document.getElementById('resetEnrollmentBtn');
+    if (resetEnrollmentBtn) {
+      resetEnrollmentBtn.addEventListener('click', function() {
+        localStorage.removeItem('isEnrolled');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userPhone');
+        localStorage.removeItem('selectedCourse');
+        // Optionally clear other related keys
+        window.location.reload();
+      });
+    }
+
+    // Live course preview logic
+    const courseSelect = document.getElementById('course');
+    const coursePreview = document.getElementById('coursePreview');
+    const previewImg = document.getElementById('previewImg');
+    const previewName = document.getElementById('previewName');
+    const previewDesc = document.getElementById('previewDesc');
+    const previewInstructor = document.getElementById('previewInstructor');
+
+    courseSelect.addEventListener('change', function() {
+      const selected = courseSelect.value;
+      if (courseData[selected]) {
+        coursePreview.classList.remove('hidden');
+        previewImg.src = courseData[selected].img;
+        previewName.innerText = selected;
+        previewDesc.innerText = courseData[selected].desc;
+        previewInstructor.innerText = 'Instructor: ' + courseData[selected].instructor;
+      } else {
+        coursePreview.classList.add('hidden');
+        previewImg.src = '';
+        previewName.innerText = '';
+        previewDesc.innerText = '';
+        previewInstructor.innerText = '';
+      }
+    });
+  </script>
 </body>
 </html>

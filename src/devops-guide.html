@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps and Deployment - Learning Material</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9fafb !important;
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            border-left: 4px solid #6366f1;
+        }
+        .topic-title {
+            color: #4f46e5;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 16px 0;
+        }
+        .topic-description {
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 16px 0;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .note-box {
+            background: #f8fafc;
+            border-left: 4px solid #fbbf24;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .list-item:before {
+            content: "•";
+            color: #4f46e5;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .timer-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .timer-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #4f46e5;
+            transition: width 1s linear;
+        }
+        .review-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+        }
+        .review-button.enabled {
+            opacity: 1;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../fullstack-reading.html" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.707 3.293a1 1 0 00-1.414 0l-6 6a1 1 0 000 1.414l6 6a1 1 0 001.414-1.414L3.414 11H16a1 1 0 100-2H3.414l4.293-4.293a1 1 0 000-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <h1 class="ml-4 text-xl font-bold text-gray-900">DevOps and Deployment</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="timer-bar w-48">
+                        <div class="timer-fill"></div>
+                    </div>
+                    <button id="review-button" class="review-button px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Mark as Reviewed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="prose prose-indigo max-w-none">
+            <h1 style="font-size: 2.5rem; color: #4f46e5; margin-bottom: 2rem; text-align: center;">DevOps and Deployment</h1>
+            
+            <!-- Version Control Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">1. Version Control & Collaboration</h2>
+                
+                <div class="topic-description">
+                    Master Git and collaborative development workflows.
+                </div>
+
+                <div class="topic-title">Git Fundamentals</div>
+                <div class="code-example">
+# Basic Git Commands
+git init
+git add .
+git commit -m "Initial commit"
+git push origin main
+
+# Branching and Merging
+git checkout -b feature/new-feature
+git merge feature/new-feature
+
+# Collaboration
+git fetch origin
+git pull origin main
+git push origin feature/new-feature</div>
+
+                <div class="topic-title">GitHub Workflow</div>
+                <div class="code-example">
+# Fork and Clone
+git clone https://github.com/username/repo.git
+git remote add upstream https://github.com/original/repo.git
+
+# Create Pull Request
+git checkout -b fix/bug-fix
+git commit -am "Fix critical bug"
+git push origin fix/bug-fix
+
+# Keep Fork Updated
+git fetch upstream
+git merge upstream/main</div>
+            </section>
+
+            <!-- CI/CD Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">2. CI/CD Pipeline</h2>
+                
+                <div class="topic-title">GitHub Actions</div>
+                <div class="code-example">
+# .github/workflows/ci.yml
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm test
+    - name: Build
+      run: npm run build</div>
+
+                <div class="topic-title">Docker Deployment</div>
+                <div class="code-example">
+# Dockerfile
+FROM node:16-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+
+# Docker Commands
+docker build -t myapp .
+docker run -p 3000:3000 myapp
+docker-compose up -d</div>
+            </section>
+
+            <!-- Cloud Services Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">3. Cloud Services</h2>
+                
+                <div class="topic-title">AWS Basics</div>
+                <div class="code-example">
+# AWS CLI Commands
+aws configure
+aws s3 ls
+aws ec2 describe-instances
+
+# Deploy to Elastic Beanstalk
+eb init
+eb create production
+eb deploy
+
+# S3 Bucket Operations
+aws s3 mb s3://my-bucket
+aws s3 cp local-file.zip s3://my-bucket/
+aws s3 sync . s3://my-bucket</div>
+
+                <div class="topic-title">Serverless Functions</div>
+                <div class="code-example">
+// AWS Lambda Function
+exports.handler = async (event) => {
+    try {
+        const response = {
+            statusCode: 200,
+            body: JSON.stringify({
+                message: "Hello from Lambda!"
+            })
+        };
+        return response;
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
+    }
+};</div>
+            </section>
+
+            <!-- Monitoring Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">4. Monitoring & Maintenance</h2>
+                
+                <div class="topic-title">Logging & Monitoring</div>
+                <div class="code-example">
+# Prometheus Configuration
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'node'
+    static_configs:
+      - targets: ['localhost:9100']
+
+# Grafana Dashboard JSON
+{
+  "dashboard": {
+    "id": null,
+    "title": "Node Metrics",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "CPU Usage",
+        "targets": [
+          {
+            "expr": "node_cpu_seconds_total"
+          }
+        ]
+      }
+    ]
+  }
+}</div>
+
+                <div class="note-box">
+                    <strong>DevOps Best Practices:</strong>
+                    <ul style="margin-top: 8px;">
+                        <li>Implement automated testing in CI/CD pipeline</li>
+                        <li>Use infrastructure as code</li>
+                        <li>Monitor application performance</li>
+                        <li>Implement proper logging and alerting</li>
+                        <li>Regular security audits</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Timer duration in seconds (1 minute)
+        const TIMER_DURATION = 60;
+        let timeElapsed = 0;
+        let timer = null;
+
+        // Get elements
+        const timerFill = document.querySelector('.timer-fill');
+        const reviewButton = document.getElementById('review-button');
+
+        // Start timer
+        timer = setInterval(() => {
+            timeElapsed++;
+            const progress = (timeElapsed / TIMER_DURATION) * 100;
+            timerFill.style.width = `${Math.min(progress, 100)}%`;
+
+            if (timeElapsed >= TIMER_DURATION) {
+                clearInterval(timer);
+                reviewButton.classList.add('enabled');
+            }
+        }, 1000);
+
+        // Handle review button click
+        reviewButton.addEventListener('click', function() {
+            if (timeElapsed >= TIMER_DURATION) {
+                const userEmail = sessionStorage.getItem('userEmail') || '';
+                sessionStorage.setItem(`devops-guide_${userEmail}`, 'completed');
+                reviewButton.textContent = 'Reviewed ✓';
+                reviewButton.disabled = true;
+                
+                // Notify parent window
+                window.opener.postMessage({ type: 'moduleReviewed' }, '*');
+            }
+        });
+    </script>
+</body>
+</html> 

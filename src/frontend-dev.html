@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Development - Learning Material</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9fafb !important;
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            border-left: 4px solid #6366f1;
+        }
+        .topic-title {
+            color: #4f46e5;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 16px 0;
+        }
+        .topic-description {
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 16px 0;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .note-box {
+            background: #f8fafc;
+            border-left: 4px solid #fbbf24;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .list-item:before {
+            content: "•";
+            color: #4f46e5;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .timer-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .timer-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #4f46e5;
+            transition: width 1s linear;
+        }
+        .review-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+        }
+        .review-button.enabled {
+            opacity: 1;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../fullstack-reading.html" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.707 3.293a1 1 0 00-1.414 0l-6 6a1 1 0 000 1.414l6 6a1 1 0 001.414-1.414L3.414 11H16a1 1 0 100-2H3.414l4.293-4.293a1 1 0 000-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <h1 class="ml-4 text-xl font-bold text-gray-900">Frontend Development</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="timer-bar w-48">
+                        <div class="timer-fill"></div>
+                    </div>
+                    <button id="review-button" class="review-button px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Mark as Reviewed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="prose prose-indigo max-w-none">
+            <h1 style="font-size: 2.5rem; color: #4f46e5; margin-bottom: 2rem; text-align: center;">Frontend Development</h1>
+            
+            <!-- HTML5 Fundamentals Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">1. HTML5 Fundamentals</h2>
+                
+                <div class="topic-description">
+                    Master modern HTML5 features and semantic markup for building accessible, well-structured web pages.
+                </div>
+
+                <div class="topic-title">Document Structure and Semantic Elements</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Basic Document Structure
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>DOCTYPE declaration and HTML5 syntax</li>
+                            <li>Meta tags and character encoding</li>
+                            <li>Viewport configuration for responsive design</li>
+                            <li>Language attributes and accessibility</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">Semantic HTML Elements
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Header, nav, main, article, section, aside, footer</li>
+                            <li>Figure and figcaption for media content</li>
+                            <li>Time and mark elements</li>
+                            <li>ARIA roles and attributes</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+<!-- Basic HTML5 Structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern HTML5 Page</title>
+</head>
+<body>
+    <header role="banner">
+        <nav role="navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main role="main">
+        <article>
+            <h1>Main Article Title</h1>
+            <section>
+                <h2>Article Section</h2>
+                <p>Content goes here...</p>
+            </section>
+        </article>
+        
+        <aside role="complementary">
+            <h3>Related Content</h3>
+            <!-- Sidebar content -->
+        </aside>
+    </main>
+    
+    <footer role="contentinfo">
+        <p>&copy; 2024 Your Website</p>
+    </footer>
+</body>
+</html></div>
+
+                <div class="topic-title">Forms and Validation</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Form Controls
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Input types (email, tel, date, number, etc.)</li>
+                            <li>Select, textarea, and button elements</li>
+                            <li>Custom form controls with datalist</li>
+                            <li>File uploads and multiple selections</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">Form Validation
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Required fields and patterns</li>
+                            <li>Min/max values and lengths</li>
+                            <li>Custom validation with JavaScript</li>
+                            <li>Error handling and feedback</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+<!-- Modern Form Example -->
+<form id="registration" novalidate>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" 
+               id="email" 
+               name="email" 
+               required 
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <span class="error" aria-live="polite"></span>
+    </div>
+    
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" 
+               id="phone" 
+               name="phone" 
+               pattern="[0-9]{10}" 
+               placeholder="1234567890">
+    </div>
+    
+    <div class="form-group">
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" 
+               id="birthdate" 
+               name="birthdate" 
+               min="1900-01-01">
+    </div>
+    
+    <button type="submit">Register</button>
+</form>
+
+<script>
+const form = document.getElementById('registration');
+form.addEventListener('submit', (event) => {
+    if (!form.checkValidity()) {
+        event.preventDefault();
+        // Show custom error messages
+    }
+});</script></div>
+
+                <div class="topic-title">Media Elements</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Audio and Video
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Native audio and video players</li>
+                            <li>Multiple source formats</li>
+                            <li>Tracks and captions</li>
+                            <li>Custom media controls</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">Responsive Media
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Picture element for art direction</li>
+                            <li>Srcset and sizes attributes</li>
+                            <li>Lazy loading images</li>
+                            <li>Background videos and fallbacks</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+<!-- Responsive Media Examples -->
+<!-- Responsive Image -->
+<picture>
+    <source media="(min-width: 800px)" srcset="hero-large.jpg">
+    <source media="(min-width: 400px)" srcset="hero-medium.jpg">
+    <img src="hero-small.jpg" alt="Hero image" loading="lazy">
+</picture>
+
+<!-- Video with Multiple Sources -->
+<video controls width="100%" preload="metadata">
+    <source src="video.webm" type="video/webm">
+    <source src="video.mp4" type="video/mp4">
+    <track kind="captions" src="captions.vtt" srclang="en">
+    Your browser does not support the video tag.
+</video></div>
+
+                <div class="topic-title">Canvas and SVG</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Canvas API
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>2D drawing context</li>
+                            <li>Paths and shapes</li>
+                            <li>Gradients and patterns</li>
+                            <li>Animation techniques</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">SVG Graphics
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Basic shapes and paths</li>
+                            <li>Gradients and filters</li>
+                            <li>Animation with SMIL</li>
+                            <li>CSS and JavaScript manipulation</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+<!-- Canvas Example -->
+<canvas id="myCanvas" width="200" height="200"></canvas>
+<script>
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+// Draw gradient
+const gradient = ctx.createLinearGradient(0, 0, 200, 0);
+gradient.addColorStop(0, '#6366f1');
+gradient.addColorStop(1, '#8b5cf6');
+
+ctx.fillStyle = gradient;
+ctx.fillRect(10, 10, 180, 180);
+
+// Draw text
+ctx.fillStyle = 'white';
+ctx.font = '20px Inter';
+ctx.fillText('Hello Canvas!', 40, 100);
+</script>
+
+<!-- SVG Example -->
+<svg width="200" height="200" viewBox="0 0 200 200">
+    <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#6366f1" />
+            <stop offset="100%" style="stop-color:#8b5cf6" />
+        </linearGradient>
+    </defs>
+    <rect x="10" y="10" width="180" height="180" fill="url(#grad)">
+        <animate attributeName="opacity" 
+                 values="1;0.5;1" 
+                 dur="2s" 
+                 repeatCount="indefinite" />
+    </rect>
+    <text x="40" y="100" fill="white" font-family="Inter" font-size="20">
+        Hello SVG!
+    </text>
+</svg></div>
+
+                <div class="note-box">
+                    <strong>HTML5 Best Practices:</strong>
+                    <ul style="margin-top: 8px;">
+                        <li>Use semantic elements to improve accessibility and SEO</li>
+                        <li>Implement proper form validation for better user experience</li>
+                        <li>Optimize media loading for performance</li>
+                        <li>Provide fallbacks for unsupported features</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CSS3 Section -->
+            <section class="section-content">
+                <h2 style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1.5rem;">2. CSS3 & Modern Styling</h2>
+                
+                <div class="topic-description">
+                    Master modern CSS techniques for creating responsive, dynamic, and maintainable user interfaces.
+                </div>
+
+                <div class="topic-title">Flexbox and Grid Layouts</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Flexbox
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Flex container properties</li>
+                            <li>Flex item properties</li>
+                            <li>Alignment and ordering</li>
+                            <li>Nested flex containers</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">CSS Grid
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Grid container setup</li>
+                            <li>Track sizing and grid areas</li>
+                            <li>Auto-placement algorithms</li>
+                            <li>Responsive grid layouts</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+/* Flexbox Example */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1 1 300px;
+    padding: 20px;
+}
+
+/* Grid Example */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    grid-column: span 1;
+}
+
+/* Responsive Grid Areas */
+.layout {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}</div>
+
+                <div class="topic-title">Animations and Transitions</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">CSS Transitions
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Property transitions</li>
+                            <li>Timing functions</li>
+                            <li>Multiple transitions</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">CSS Animations
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Keyframe animations</li>
+                            <li>Animation properties</li>
+                            <li>3D transforms</li>
+                            <li>Animation events</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+/* Transitions */
+.button {
+    background: #4f46e5;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* 3D Transform */
+.card {
+    perspective: 1000px;
+}
+
+.card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}</div>
+
+                <div class="topic-title">Responsive Design Principles</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Media Queries
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Breakpoint strategies</li>
+                            <li>Container queries</li>
+                            <li>Feature queries (@supports)</li>
+                            <li>Print stylesheets</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">Responsive Patterns
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Mobile-first approach</li>
+                            <li>Fluid typography</li>
+                            <li>Responsive images</li>
+                            <li>Layout patterns</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+/* Responsive Design Examples */
+/* Fluid Typography */
+:root {
+    --fluid-min-width: 320;
+    --fluid-max-width: 1200;
+    --fluid-min-size: 16;
+    --fluid-max-size: 24;
+    --fluid-min-ratio: calc(var(--fluid-min-size) / var(--fluid-min-width));
+    --fluid-max-ratio: calc(var(--fluid-max-size) / var(--fluid-max-width));
+    --fluid-viewport-ratio: calc((100vw - var(--fluid-min-width) * 1px) / 
+                                (var(--fluid-max-width) - var(--fluid-min-width)));
+}
+
+body {
+    font-size: calc(var(--fluid-min-ratio) * 100vw + 
+                   (var(--fluid-max-ratio) - var(--fluid-min-ratio)) * 
+                   var(--fluid-viewport-ratio) * 100vw);
+}
+
+/* Container Queries */
+@container (min-width: 400px) {
+    .card {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Feature Queries */
+@supports (display: grid) {
+    .modern-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}</div>
+
+                <div class="topic-title">CSS Variables and Modules</div>
+                <ul style="margin-bottom: 20px;">
+                    <li class="list-item">Custom Properties
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Variable declaration and scope</li>
+                            <li>Fallback values</li>
+                            <li>Dynamic theming</li>
+                            <li>JavaScript interaction</li>
+                        </ul>
+                    </li>
+                    <li class="list-item">CSS Modules
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Scoped styles</li>
+                            <li>Composition patterns</li>
+                            <li>Global styles</li>
+                            <li>Build system integration</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="code-example">
+/* CSS Variables */
+:root {
+    --primary-color: #4f46e5;
+    --secondary-color: #6366f1;
+    --spacing-unit: 8px;
+    --border-radius: 4px;
+}
+
+.button {
+    background: var(--primary-color);
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius);
+}
+
+/* Theme Switching */
+[data-theme="dark"] {
+    --primary-color: #818cf8;
+    --text-color: #ffffff;
+    --bg-color: #1f2937;
+}
+
+/* CSS Modules Example */
+/* styles.module.css */
+.button {
+    composes: base from './base.css';
+    background: var(--primary-color);
+}
+
+.buttonPrimary {
+    composes: button;
+    color: white;
+}
+
+/* Usage in JS */
+import styles from './styles.module.css';
+
+element.className = styles.buttonPrimary;</div>
+
+                <div class="note-box">
+                    <strong>CSS Best Practices:</strong>
+                    <ul style="margin-top: 8px;">
+                        <li>Use CSS custom properties for maintainable themes</li>
+                        <li>Implement mobile-first responsive design</li>
+                        <li>Optimize animations for performance</li>
+                        <li>Follow BEM or similar naming conventions</li>
+                        <li>Use modern layout techniques (Flexbox/Grid)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">3. JavaScript Essentials</h2>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <ul class="list-disc ml-6 space-y-2">
+                        <li>ES6+ features</li>
+                        <li>DOM manipulation</li>
+                        <li>Event handling</li>
+                        <li>Async programming (Promises, async/await)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">4. React Framework</h2>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <ul class="list-disc ml-6 space-y-2">
+                        <li>Components and props</li>
+                        <li>State management</li>
+                        <li>Hooks and lifecycle methods</li>
+                        <li>Routing and navigation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">5. Modern Development Tools</h2>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <ul class="list-disc ml-6 space-y-2">
+                        <li>Version control with Git</li>
+                        <li>Package management (npm/yarn)</li>
+                        <li>Build tools and bundlers</li>
+                        <li>Developer tools and debugging</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="test-section" style="margin-top: 4rem; padding: 2rem; background: #f8fafc; border-radius: 12px; text-align: center;">
+                <h2 style="font-size: 1.8rem; color: #4f46e5; margin-bottom: 1.5rem;">Ready to Test Your Knowledge?</h2>
+                <p style="margin-bottom: 2rem; color: #4b5563;">Make sure you've reviewed all sections before taking the test.</p>
+                <a href="frontend-test.html" class="button" style="display: inline-block; background: #4f46e5; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Take the Test</a>
+            </section>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="../fullstack-reading.html" style="display: inline-block; background: #4f46e5; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-bottom: 2rem;">Back to Course</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timer duration in seconds (1 minute)
+        const TIMER_DURATION = 60;
+        let timeElapsed = 0;
+        let timer = null;
+
+        // Get elements
+        const timerFill = document.querySelector('.timer-fill');
+        const reviewButton = document.getElementById('review-button');
+
+        // Start timer
+        timer = setInterval(() => {
+            timeElapsed++;
+            const progress = (timeElapsed / TIMER_DURATION) * 100;
+            timerFill.style.width = `${Math.min(progress, 100)}%`;
+
+            if (timeElapsed >= TIMER_DURATION) {
+                clearInterval(timer);
+                reviewButton.classList.add('enabled');
+            }
+        }, 1000);
+
+        // Handle review button click
+        reviewButton.addEventListener('click', function() {
+            if (timeElapsed >= TIMER_DURATION) {
+                const userEmail = sessionStorage.getItem('userEmail') || '';
+                sessionStorage.setItem(`frontend-dev_${userEmail}`, 'completed');
+                reviewButton.textContent = 'Reviewed ✓';
+                reviewButton.disabled = true;
+                
+                // Notify parent window
+                window.opener.postMessage({ type: 'moduleReviewed' }, '*');
+            }
+        });
+    </script>
+</body>
+</html> 

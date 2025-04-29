@@ -3,97 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Full Stack Course</title>
+  <title>Full Stack Development - Choose Your Learning Mode</title>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-
-  <header class="bg-indigo-500 p-6 text-white flex justify-between items-center">
-    <h1 class="text-3xl font-bold">Full Stack Developer Bootcamp</h1>
-    <a href="index.php" class="text-white hover:text-gray-200 flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-      Home
-    </a>
-  </header>
-
-  <main class="max-w-5xl mx-auto mt-10 space-y-8 p-6 bg-white rounded shadow">
-    <section>
-      <h2 class="text-2xl font-semibold mb-2">Introduction</h2>
-      <p>Welcome to the Full Stack Developer Bootcamp! This course will guide you through HTML, CSS, JavaScript, Node.js, and React.</p>
-    </section>
-
-    <section>
-      <h3 class="text-xl font-semibold mb-2">Lessons</h3>
-      <ul class="space-y-4">
-        <li>
-          <p class="font-medium">Lesson 1: HTML Basics</p>
-          <div class="relative pb-[56.25%] h-0">
-            <iframe 
-              id="video1"
-              class="absolute top-0 left-0 w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/lSwIe0TMUhc?si=qtMTkxS4G8Ya0t7Q"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              onended="checkVideoCompletion()"
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <p class="font-medium">Lesson 2: CSS Fundamentals</p>
-          <div class="relative pb-[56.25%] h-0">
-            <iframe 
-              id="video2"
-              class="absolute top-0 left-0 w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/lSwIe0TMUhc?si=qtMTkxS4G8Ya0t7Q"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              onended="checkVideoCompletion()"
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <p class="font-medium">Lesson 3: JavaScript Essentials</p>
-          <div class="relative pb-[56.25%] h-0">
-            <iframe 
-              id="video3"
-              class="absolute top-0 left-0 w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/lSwIe0TMUhc?si=qtMTkxS4G8Ya0t7Q"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              onended="checkVideoCompletion()"
-            ></iframe>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    
-    <div class="mt-8 text-center">
-      <button onclick="redirectToCertificate()" class="bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600">
-        Get Your Certificate
-      </button>
-    </div>
-  </main>
-
-  <footer class="bg-gray-800 text-white text-center py-6 mt-16">
-    <p>&copy; 2025 SkillUp. All rights reserved.</p>
-  </footer>
-
-  <script>
-    function redirectToCertificate() {
-      
-      localStorage.setItem('selectedCourse', 'Full Stack Developer Bootcamp');
-      window.location.href = 'certificate.html';
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    html, body {
+      height: 100%;
+      min-height: 100vh;
     }
-  </script>
-
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4158D0 0%, #6C63FF 50%, #FFB347 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 16s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .beast-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100vw;
+      position: relative;
+      z-index: 1;
+    }
+    .beast-title {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(90deg, #2563eb, #e11d48, #f59e42, #4f46e5);
+      background-size: 200% 200%;
+      animation: gradientBG 8s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 3rem;
+      text-align: center;
+      text-shadow: 0 4px 32px rgba(59,130,246,0.12);
+    }
+    .beast-cards {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+    }
+    .beast-card {
+      flex: 1 1 0;
+      min-width: 320px;
+      max-width: 400px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 2rem;
+      box-shadow: 0 8px 40px 0 rgba(31, 38, 135, 0.18), 0 2px 8px 0 rgba(0,0,0,0.08);
+      border: 2.5px solid rgba(99,102,241,0.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 3rem 2rem 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s, border 0.25s, background 0.25s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s;
+    }
+    .beast-card:hover, .beast-card:focus {
+      transform: scale(1.07) translateY(-8px) rotate(-1deg);
+      box-shadow: 0 16px 64px 0 rgba(59,130,246,0.22), 0 2px 8px 0 rgba(0,0,0,0.10);
+      border: 2.5px solid #6366f1;
+      background: rgba(255,255,255,0.32);
+    }
+    .beast-card .beast-glow {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      opacity: 0.18;
+      background: radial-gradient(circle at 60% 40%, #a5b4fc 0%, #818cf8 60%, transparent 100%);
+      z-index: 0;
+    }
+    .beast-card .beast-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .beast-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 4px 16px #6366f1aa);
+      transition: transform 0.3s;
+    }
+    .beast-card:hover .beast-icon {
+      transform: scale(1.12) rotate(-4deg);
+    }
+    .beast-card .beast-label {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #3730a3;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      letter-spacing: -1px;
+    }
+    .beast-card .beast-desc {
+      font-size: 1.1rem;
+      color: #6366f1;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: none; }
+    }
+    @media (max-width: 900px) {
+      .beast-cards { flex-direction: column; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="beast-container animate__animated animate__fadeIn">
+    <div class="beast-title animate__animated animate__fadeInDown animate__delay-1s">Full Stack Development<br>Choose Your Learning Mode</div>
+    <div class="beast-cards animate__animated animate__fadeInUp animate__delay-2s">
+      <div class="beast-card" tabindex="0" onclick="window.location.href='fullstack-reading.html'">
+        <div class="beast-glow"></div>
+        <div class="beast-content">
+          <!-- Book/Reading SVG Icon -->
+          <svg class="beast-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64"><rect x="8" y="12" width="48" height="40" rx="8" fill="#6366f1" opacity=".12"/><rect x="8" y="12" width="48" height="40" rx="8" stroke="#6366f1" stroke-width="3"/><path d="M16 20h32M16 28h32M16 36h20" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/></svg>
+          <div class="beast-label">Learn by Reading</div>
+          <div class="beast-desc">Best for in-depth understanding</div>
+        </div>
+      </div>
+      <div class="beast-card" tabindex="0" onclick="window.location.href='videos-material.html'">
+        <div class="beast-glow"></div>
+        <div class="beast-content">
+          <!-- Video/Play SVG Icon -->
+          <svg class="beast-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64"><rect x="8" y="12" width="48" height="40" rx="8" fill="#a78bfa" opacity=".12"/><rect x="8" y="12" width="48" height="40" rx="8" stroke="#a78bfa" stroke-width="3"/><path d="M28 24l16 8-16 8V24z" fill="#a78bfa"/></svg>
+          <div class="beast-label">Learn by Videos</div>
+          <div class="beast-desc">Best for visual learners</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

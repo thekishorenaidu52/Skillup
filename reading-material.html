@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Learning Material</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .module-card {
+            transition: transform 0.2s;
+        }
+        .module-card:hover {
+            transform: translateY(-4px);
+        }
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #4f46e5;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .home-button:hover {
+            background-color: #4338ca;
+            transform: translateY(-1px);
+        }
+        .home-button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="flex justify-between items-center mb-12">
+            <h1 class="text-4xl font-bold text-indigo-600">Data Science</h1>
+            <a href="index.php" class="home-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                Home
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Python Fundamentals -->
+            <div class="module-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">Python Fundamentals</h2>
+                            <p class="text-sm text-gray-500 mt-1">Module 1</p>
+                        </div>
+                        <span id="python-status" class="hidden px-2 py-1 text-xs font-medium rounded-full"></span>
+                    </div>
+                    <p class="mt-4 text-gray-600">Learn Python basics, data structures, and essential programming concepts.</p>
+                    <a href="src/python-fundamentals.html" class="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
+                        View Material
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Data Analysis -->
+            <div class="module-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">Data Analysis</h2>
+                            <p class="text-sm text-gray-500 mt-1">Module 2</p>
+                        </div>
+                        <span id="data-analysis-status" class="hidden px-2 py-1 text-xs font-medium rounded-full"></span>
+                    </div>
+                    <p class="mt-4 text-gray-600">Master data manipulation, visualization, and statistical analysis.</p>
+                    <a href="src/data-analysis.html" class="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
+                        View Material
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Machine Learning -->
+            <div class="module-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">Machine Learning</h2>
+                            <p class="text-sm text-gray-500 mt-1">Module 3</p>
+                        </div>
+                        <span id="machine-learning-status" class="hidden px-2 py-1 text-xs font-medium rounded-full"></span>
+                    </div>
+                    <p class="mt-4 text-gray-600">Explore ML algorithms, model training, and practical applications.</p>
+                    <a href="src/machine-learning.html" class="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
+                        View Material
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="test-section" class="mt-16 flex justify-center">
+            <a id="test-button" href="test.html" class="test-btn bg-gradient-to-r from-cyan-500 to-indigo-500 text-white px-8 py-4 rounded-xl text-xl font-semibold shadow-lg transition opacity-60 pointer-events-none cursor-not-allowed filter grayscale-20">
+                Are you ready? Take a Test
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Get user email from session storage
+        function getUserEmail() {
+            return sessionStorage.getItem('userEmail') || '';
+        }
+
+        // Module IDs and their corresponding status elements
+        const modules = {
+            'python-fundamentals': document.getElementById('python-status'),
+            'data-analysis': document.getElementById('data-analysis-status'),
+            'machine-learning': document.getElementById('machine-learning-status')
+        };
+
+        // Update UI based on module completion
+        function updateModuleStatus() {
+            const userEmail = getUserEmail();
+            let completedModules = 0;
+
+            for (const [moduleId, statusElement] of Object.entries(modules)) {
+                const isCompleted = sessionStorage.getItem(`${moduleId}_${userEmail}`) === 'completed';
+                if (isCompleted) {
+                    statusElement.textContent = '✓ Reviewed';
+                    statusElement.classList.remove('hidden', 'bg-yellow-100', 'text-yellow-800');
+                    statusElement.classList.add('bg-green-100', 'text-green-800');
+                    completedModules++;
+                } else {
+                    statusElement.textContent = 'Not reviewed';
+                    statusElement.classList.remove('hidden', 'bg-green-100', 'text-green-800');
+                    statusElement.classList.add('bg-yellow-100', 'text-yellow-800');
+                }
+                statusElement.classList.remove('hidden');
+            }
+
+            // Update test section
+            const testButton = document.getElementById('test-button');
+            const testMessage = document.getElementById('test-message');
+            const remainingModules = 3 - completedModules;
+
+            if (completedModules >= 3) {
+                testButton.classList.remove('opacity-60', 'pointer-events-none', 'cursor-not-allowed', 'filter', 'grayscale-20');
+                testButton.classList.add('opacity-100', 'hover:shadow-xl', 'transform', 'hover:-translate-y-1');
+                testMessage.textContent = 'You have completed all required modules. You can now take the test!';
+            } else {
+                testButton.classList.add('opacity-60', 'pointer-events-none', 'cursor-not-allowed', 'filter', 'grayscale-20');
+                testButton.classList.remove('opacity-100', 'hover:shadow-xl', 'transform', 'hover:-translate-y-1');
+                testMessage.textContent = `Please review ${remainingModules} more module${remainingModules !== 1 ? 's' : ''} before taking the test.`;
+            }
+        }
+
+        // Listen for module review messages
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'moduleReviewed') {
+                updateModuleStatus();
+            }
+        });
+
+        // Initial status update
+        updateModuleStatus();
+
+        // Check status every second (in case storage changes in other tabs)
+        setInterval(updateModuleStatus, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Full Stack Development Learning Material</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+    }
+    .module-card {
+      transition: transform 0.2s;
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+    }
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #4f46e5;
+      color: white;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .home-button:hover {
+      background-color: #4338ca;
+      transform: translateY(-1px);
+    }
+    .home-button:active {
+      transform: translateY(0);
+    }
+    .review-button {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transition: all 0.3s ease;
+    }
+    .review-button.enabled {
+      opacity: 1;
+      cursor: pointer;
+    }
+    .timer-bar {
+      width: 100%;
+      height: 4px;
+      background-color: #e5e7eb;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .timer-fill {
+      width: 0%;
+      height: 100%;
+      background-color: #4f46e5;
+      transition: width 1s linear;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="flex justify-between items-center mb-12">
+      <h1 class="text-4xl font-bold text-indigo-600">Full Stack Development</h1>
+      <a href="index.php" class="home-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+        </svg>
+        Home
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Frontend Development -->
+      <div class="module-card bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-xl font-semibold text-gray-900">Frontend Development</h2>
+              <p class="text-sm text-gray-500 mt-1">Module 1</p>
+            </div>
+            <span id="frontend-status" class="hidden px-2 py-1 text-xs font-medium rounded-full"></span>
+          </div>
+          <p class="mt-4 text-gray-600">Master HTML5, CSS3, JavaScript, and modern frontend frameworks like React.</p>
+          <a href="src/frontend-dev.html" class="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
+            View Material
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Backend Development -->
+      <div class="module-card bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-xl font-semibold text-gray-900">Backend Development</h2>
+              <p class="text-sm text-gray-500 mt-1">Module 2</p>
+            </div>
+            <span id="backend-status" class="hidden px-2 py-1 text-xs font-medium rounded-full"></span>
+          </div>
+          <p class="mt-4 text-gray-600">Learn server-side programming, databases, and API development.</p>
+          <a href="src/backend-dev.html" class="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
+            View Material
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- DevOps and Deployment -->
+      <div class="module-card bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-xl font-semibold text-gray-900">DevOps and Deployment</h2>
+              <p class="text-sm text-gray-500 mt-1">Module 3</p>
+            </div>
+            <span id="devops-status" class="hidden px-2 py-1 text-xs font-medium rounded-full"></span>
+          </div>
+          <p class="mt-4 text-gray-600">Understand deployment, CI/CD, and cloud services.</p>
+          <a href="src/devops-guide.html" class="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
+            View Material
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="test-section" class="mt-16">
+      <h2 class="text-2xl font-bold text-center mb-4">Ready to Test Your Knowledge?</h2>
+      <p id="test-message" class="text-center text-gray-600 mb-8">Please review 3 more modules before taking the test.</p>
+      <div class="text-center">
+        <a href="fullstack-test.html" id="test-button" class="inline-block bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed opacity-50">
+          Take the Test
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get user email from session storage
+    function getUserEmail() {
+      return sessionStorage.getItem('userEmail') || '';
+    }
+
+    // Module IDs and their corresponding status elements
+    const modules = {
+      'frontend-dev': document.getElementById('frontend-status'),
+      'backend-dev': document.getElementById('backend-status'),
+      'devops-guide': document.getElementById('devops-status')
+    };
+
+    // Update UI based on module completion
+    function updateModuleStatus() {
+      const userEmail = getUserEmail();
+      let completedModules = 0;
+
+      for (const [moduleId, statusElement] of Object.entries(modules)) {
+        const isCompleted = sessionStorage.getItem(`${moduleId}_${userEmail}`) === 'completed';
+        if (isCompleted) {
+          statusElement.textContent = '✓ Reviewed';
+          statusElement.classList.remove('hidden', 'bg-yellow-100', 'text-yellow-800');
+          statusElement.classList.add('bg-green-100', 'text-green-800');
+          completedModules++;
+        } else {
+          statusElement.textContent = 'Not reviewed';
+          statusElement.classList.remove('hidden', 'bg-green-100', 'text-green-800');
+          statusElement.classList.add('bg-yellow-100', 'text-yellow-800');
+        }
+        statusElement.classList.remove('hidden');
+      }
+
+      // Update test section
+      const testButton = document.getElementById('test-button');
+      const testMessage = document.getElementById('test-message');
+      const remainingModules = 3 - completedModules;
+
+      if (completedModules >= 3) {
+        testButton.classList.remove('bg-gray-400', 'cursor-not-allowed', 'opacity-50');
+        testButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+        testMessage.textContent = 'You have completed all required modules. You can now take the test!';
+      } else {
+        testMessage.textContent = `Please review ${remainingModules} more module${remainingModules !== 1 ? 's' : ''} before taking the test.`;
+      }
+    }
+
+    // Initial status update
+    updateModuleStatus();
+
+    // Check status every second (in case storage changes in other tabs)
+    setInterval(updateModuleStatus, 1000);
+  </script>
+</body>
+</html> 

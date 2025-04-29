@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Science Video Material</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6366f1 0%, #22d3ee 50%, #f59e42 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 16s ease-in-out infinite;
+      position: relative;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .glass {
+      background: rgba(255,255,255,0.90);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 2.5rem;
+      transition: box-shadow 0.3s, transform 0.3s;
+      animation: fadeInUp 0.7s;
+    }
+    .glass:hover {
+      box-shadow: 0 16px 48px 0 rgba(99,102,241,0.18), 0 2px 8px 0 rgba(0,0,0,0.10);
+      transform: scale(1.02) translateY(-4px);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: none; }
+    }
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e0e7ef;
+    }
+    .lesson-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .lesson-check {
+      display: inline-block;
+      color: #22c55e;
+      font-size: 1.7rem;
+      vertical-align: middle;
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .lesson-check.visible {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    .video-box {
+      border-radius: 1.2rem;
+      overflow: hidden;
+      box-shadow: 0 2px 16px 0 rgba(99,102,241,0.10);
+      margin-bottom: 1.2rem;
+      background: #f3f4f6;
+      border: 2px solid #e0e7ef;
+      transition: border 0.3s;
+    }
+    .glass:has(video:focus) {
+      border: 2px solid #6366f1;
+    }
+    .test-btn {
+      opacity: 0.6;
+      pointer-events: none;
+      cursor: not-allowed;
+      filter: grayscale(0.2);
+      transition: opacity 0.3s, filter 0.3s;
+    }
+    .test-btn.enabled {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+      filter: none;
+      animation: pulseBtn 2s infinite;
+    }
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 0 0 0 #22d3ee44; }
+      70% { box-shadow: 0 0 0 16px #22d3ee00; }
+      100% { box-shadow: 0 0 0 0 #22d3ee00; }
+    }
+    .note {
+      text-align: center;
+      color: #6366f1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .bookmark-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f0f9ff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      margin-right: 0.5rem;
+    }
+    .delete-bookmark {
+      color: #ef4444;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0 0.25rem;
+    }
+    .delete-bookmark:hover {
+      color: #b91c1c;
+    }
+    .highlighted {
+      border-radius: 2px;
+      padding: 0 2px;
+      margin: 0 1px;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky-header shadow-md p-6 flex justify-between items-center animate__animated animate__fadeInDown">
+    <h1 class="text-3xl font-extrabold gradient-text tracking-tight">Data Science</h1>
+    <a href="index.php" class="text-blue-600 hover:underline font-semibold">Home</a>
+  </header>
+  <main class="max-w-3xl mx-auto py-12 px-4 animate__animated animate__fadeInUp">
+    <h2 class="text-4xl font-bold text-center mb-10 gradient-text">Video Lessons</h2>
+    <div class="note" id="videoNote">Please watch all videos completely before taking the test.</div>
+    <div class="glass p-6 animate__animated animate__fadeInUp animate__delay-1s">
+      <div class="lesson-title">Lesson 1: Python for Data Science <span class="lesson-check" id="check1">&#10003;</span></div>
+      <div class="video-box">
+        <video id="video1" width="100%" height="320" controls poster="src/ds-poster1.jpg">
+          <source src="src/What is Data Science _ Introduction to Data Science in 2 Minutes _ Data Science Training _ Edureka.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="text-gray-700 mb-2">Learn the basics of Python, variables, data types, and how Python is used in data science.</div>
+      <div class="mt-4">
+        <button type="button" id="showNotes1" class="text-indigo-600 hover:text-indigo-800 font-semibold underline mb-2">Take Notes</button>
+        <label class="block font-semibold text-indigo-600 mb-1 hidden" id="notesLabel1">Your Notes</label>
+        <div class="relative group hidden" id="notesArea1">
+          <div class="flex items-center gap-2 mb-2">
+            <input type="color" id="highlightColor1" value="#fef08a" class="w-8 h-8 rounded cursor-pointer" title="Choose highlight color"/>
+            <button type="button" id="highlight1" class="text-gray-600 hover:text-gray-800 text-xs font-semibold px-2 py-1 rounded border border-gray-200 bg-white/60">Highlight Selection</button>
+            <button type="button" id="removeHighlight1" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200 bg-white/60">Remove Highlight</button>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <button type="button" id="bookmark1" class="text-cyan-600 hover:text-cyan-800 text-xs font-semibold px-2 py-1 rounded border border-cyan-200 bg-cyan-50">Bookmark Time</button>
+            <span class="text-xs text-gray-500">Bookmarked Times:</span>
+            <ul id="bookmarksList1" class="flex gap-2"></ul>
+          </div>
+          <textarea id="notes1" rows="3" class="w-full p-3 rounded-xl bg-white/70 border border-indigo-200 focus:ring-2 focus:ring-indigo-400 focus:outline-none shadow-inner resize-vertical transition" placeholder="Type your notes here while watching..." contenteditable="true"></textarea>
+          <span id="saved1" class="absolute right-3 top-2 text-green-600 text-xs font-bold bg-white/80 px-2 py-1 rounded shadow opacity-0 transition-opacity">Saved!</span>
+          <div class="flex gap-2 mt-2">
+            <button type="button" id="expand1" class="text-blue-600 hover:text-blue-800 text-xs font-semibold px-2 py-1 rounded transition border border-blue-200 bg-white/60">Expand</button>
+            <button type="button" id="download1" class="text-green-600 hover:text-green-800 text-xs font-semibold px-2 py-1 rounded transition border border-green-200 bg-white/60">Download</button>
+            <button type="button" id="clear1" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded transition border border-red-200 bg-white/60">Clear</button>
+            <button type="button" id="hideNotes1" class="text-gray-500 hover:text-gray-700 text-xs font-semibold px-2 py-1 rounded transition border border-gray-200 bg-white/60">Hide Notes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="glass p-6 animate__animated animate__fadeInUp animate__delay-2s">
+      <div class="lesson-title">Lesson 2: Data Analysis with Pandas <span class="lesson-check" id="check2">&#10003;</span></div>
+      <div class="video-box">
+        <video id="video2" width="100%" height="320" controls poster="src/pandas-poster.jpg">
+          <source src="src/PANDAS in Python.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="text-gray-700 mb-2">Understand dataframes, series, and how to manipulate data using Pandas.</div>
+      <div class="mt-4">
+        <button type="button" id="showNotes2" class="text-indigo-600 hover:text-indigo-800 font-semibold underline mb-2">Take Notes</button>
+        <label class="block font-semibold text-indigo-600 mb-1 hidden" id="notesLabel2">Your Notes</label>
+        <div class="relative group hidden" id="notesArea2">
+          <div class="flex items-center gap-2 mb-2">
+            <input type="color" id="highlightColor2" value="#fef08a" class="w-8 h-8 rounded cursor-pointer" title="Choose highlight color"/>
+            <button type="button" id="highlight2" class="text-gray-600 hover:text-gray-800 text-xs font-semibold px-2 py-1 rounded border border-gray-200 bg-white/60">Highlight Selection</button>
+            <button type="button" id="removeHighlight2" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200 bg-white/60">Remove Highlight</button>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <button type="button" id="bookmark2" class="text-cyan-600 hover:text-cyan-800 text-xs font-semibold px-2 py-1 rounded border border-cyan-200 bg-cyan-50">Bookmark Time</button>
+            <span class="text-xs text-gray-500">Bookmarked Times:</span>
+            <ul id="bookmarksList2" class="flex gap-2"></ul>
+          </div>
+          <textarea id="notes2" rows="3" class="w-full p-3 rounded-xl bg-white/70 border border-indigo-200 focus:ring-2 focus:ring-indigo-400 focus:outline-none shadow-inner resize-vertical transition" placeholder="Type your notes here while watching..." contenteditable="true"></textarea>
+          <span id="saved2" class="absolute right-3 top-2 text-green-600 text-xs font-bold bg-white/80 px-2 py-1 rounded shadow opacity-0 transition-opacity">Saved!</span>
+          <div class="flex gap-2 mt-2">
+            <button type="button" id="expand2" class="text-blue-600 hover:text-blue-800 text-xs font-semibold px-2 py-1 rounded transition border border-blue-200 bg-white/60">Expand</button>
+            <button type="button" id="download2" class="text-green-600 hover:text-green-800 text-xs font-semibold px-2 py-1 rounded transition border border-green-200 bg-white/60">Download</button>
+            <button type="button" id="clear2" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded transition border border-red-200 bg-white/60">Clear</button>
+            <button type="button" id="hideNotes2" class="text-gray-500 hover:text-gray-700 text-xs font-semibold px-2 py-1 rounded transition border border-gray-200 bg-white/60">Hide Notes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="glass p-6 animate__animated animate__fadeInUp animate__delay-3s">
+      <div class="lesson-title">Lesson 3: Machine Learning Basics <span class="lesson-check" id="check3">&#10003;</span></div>
+      <div class="video-box">
+        <video id="video3" width="100%" height="320" controls poster="src/ml-poster.jpg">
+          <source src="src/Machine Learning E.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="text-gray-700 mb-2">Introduction to machine learning concepts, algorithms, and workflows.</div>
+      <div class="mt-4">
+        <button type="button" id="showNotes3" class="text-indigo-600 hover:text-indigo-800 font-semibold underline mb-2">Take Notes</button>
+        <label class="block font-semibold text-indigo-600 mb-1 hidden" id="notesLabel3">Your Notes</label>
+        <div class="relative group hidden" id="notesArea3">
+          <div class="flex items-center gap-2 mb-2">
+            <input type="color" id="highlightColor3" value="#fef08a" class="w-8 h-8 rounded cursor-pointer" title="Choose highlight color"/>
+            <button type="button" id="highlight3" class="text-gray-600 hover:text-gray-800 text-xs font-semibold px-2 py-1 rounded border border-gray-200 bg-white/60">Highlight Selection</button>
+            <button type="button" id="removeHighlight3" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded border border-red-200 bg-white/60">Remove Highlight</button>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <button type="button" id="bookmark3" class="text-cyan-600 hover:text-cyan-800 text-xs font-semibold px-2 py-1 rounded border border-cyan-200 bg-cyan-50">Bookmark Time</button>
+            <span class="text-xs text-gray-500">Bookmarked Times:</span>
+            <ul id="bookmarksList3" class="flex gap-2"></ul>
+          </div>
+          <textarea id="notes3" rows="3" class="w-full p-3 rounded-xl bg-white/70 border border-indigo-200 focus:ring-2 focus:ring-indigo-400 focus:outline-none shadow-inner resize-vertical transition" placeholder="Type your notes here while watching..." contenteditable="true"></textarea>
+          <span id="saved3" class="absolute right-3 top-2 text-green-600 text-xs font-bold bg-white/80 px-2 py-1 rounded shadow opacity-0 transition-opacity">Saved!</span>
+          <div class="flex gap-2 mt-2">
+            <button type="button" id="expand3" class="text-blue-600 hover:text-blue-800 text-xs font-semibold px-2 py-1 rounded transition border border-blue-200 bg-white/60">Expand</button>
+            <button type="button" id="download3" class="text-green-600 hover:text-green-800 text-xs font-semibold px-2 py-1 rounded transition border border-green-200 bg-white/60">Download</button>
+            <button type="button" id="clear3" class="text-red-500 hover:text-red-700 text-xs font-semibold px-2 py-1 rounded transition border border-red-200 bg-white/60">Clear</button>
+            <button type="button" id="hideNotes3" class="text-gray-500 hover:text-gray-700 text-xs font-semibold px-2 py-1 rounded transition border border-gray-200 bg-white/60">Hide Notes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-12">
+      <a id="testBtn" href="test.html" class="test-btn bg-gradient-to-r from-cyan-500 to-indigo-500 text-white px-8 py-4 rounded-xl text-xl font-semibold shadow-lg transition">Are you ready? Take a Test</a>
+    </div>
+    <div class="flex justify-center mt-8">
+      <button id="exportAllNotes" class="bg-gradient-to-r from-indigo-500 to-cyan-500 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg transition">Export All Notes</button>
+    </div>
+  </main>
+  <footer class="bg-white/80 text-center py-6 mt-16 border-t animate__animated animate__fadeInUp">
+    <p class="text-gray-600">&copy; 2025 SkillUp. All rights reserved.</p>
+  </footer>
+  <script>
+    // Enable test only after all videos watched
+    const videos = [document.getElementById('video1'), document.getElementById('video2'), document.getElementById('video3')];
+    const checks = [document.getElementById('check1'), document.getElementById('check2'), document.getElementById('check3')];
+    const testBtn = document.getElementById('testBtn');
+    const note = document.getElementById('videoNote');
+    let watched = [false, false, false];
+    videos.forEach((video, idx) => {
+      video.onended = function() {
+        watched[idx] = true;
+        checks[idx].classList.add('visible');
+        if (watched.every(Boolean)) {
+          testBtn.classList.add('enabled');
+          testBtn.classList.remove('test-btn');
+          note.style.display = 'none';
+        }
+      };
+    });
+
+    function setupNotes(id, key, savedId, expandId, downloadId, clearId, showBtnId, areaId, labelId, hideBtnId, videoId, bookmarkBtnId, bookmarksListId, highlightBtnId, removeHighlightBtnId, colorPickerId) {
+      const textarea = document.getElementById(id);
+      // Convert textarea to div for better HTML content handling
+      const div = document.createElement('div');
+      div.className = textarea.className;
+      div.id = textarea.id;
+      div.contentEditable = true;
+      div.style.whiteSpace = 'pre-wrap';
+      div.innerHTML = localStorage.getItem(key + '_html') || '';
+      textarea.parentNode.replaceChild(div, textarea);
+
+      const saved = document.getElementById(savedId);
+      const expandBtn = document.getElementById(expandId);
+      const downloadBtn = document.getElementById(downloadId);
+      const clearBtn = document.getElementById(clearId);
+      const showBtn = document.getElementById(showBtnId);
+      const area = document.getElementById(areaId);
+      const label = document.getElementById(labelId);
+      const hideBtn = document.getElementById(hideBtnId);
+      const video = document.getElementById(videoId);
+      const bookmarkBtn = document.getElementById(bookmarkBtnId);
+      const bookmarksList = document.getElementById(bookmarksListId);
+      const highlightBtn = document.getElementById(highlightBtnId);
+      const removeHighlightBtn = document.getElementById(removeHighlightBtnId);
+      const colorPicker = document.getElementById(colorPickerId);
+
+      // Handle text highlighting with color picker
+      highlightBtn.addEventListener('click', () => {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+        
+        if (selectedText) {
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('span');
+          span.style.backgroundColor = colorPicker.value;
+          span.classList.add('highlighted');
+          range.surroundContents(span);
+          localStorage.setItem(key + '_html', div.innerHTML);
+        }
+      });
+
+      // Remove highlight from selected text
+      removeHighlightBtn.addEventListener('click', () => {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+        
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+        const spans = div.querySelectorAll('span[style*="background-color"]');
+        
+        spans.forEach(span => {
+          // Check if the span is within or intersects the current selection
+          if (selection.containsNode(span, true)) {
+            // Remove the highlight by unwrapping the span
+            const parent = span.parentNode;
+            while (span.firstChild) {
+              parent.insertBefore(span.firstChild, span);
+            }
+            parent.removeChild(span);
+          }
+        });
+        
+        localStorage.setItem(key + '_html', div.innerHTML);
+      });
+
+      // Add style for highlighted text
+      const style = document.createElement('style');
+      style.textContent = `
+        .highlighted {
+          border-radius: 2px;
+          padding: 0 2px;
+          margin: 0 1px;
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Save notes content when it changes
+      div.addEventListener('input', () => {
+        localStorage.setItem(key + '_html', div.innerHTML);
+        saved.style.opacity = 1;
+        setTimeout(() => { saved.style.opacity = 0; }, 1500);
+      });
+
+      expandBtn.addEventListener('click', () => {
+        if (div.style.height === 'auto' || div.style.height === '') {
+          div.style.height = '300px';
+          expandBtn.textContent = 'Collapse';
+        } else {
+          div.style.height = 'auto';
+          expandBtn.textContent = 'Expand';
+        }
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        const blob = new Blob([div.innerText], {type: 'text/plain'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = key + '.txt';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        div.innerHTML = '';
+        localStorage.removeItem(key + '_html');
+        saved.style.opacity = 1;
+        setTimeout(() => { saved.style.opacity = 0; }, 1500);
+      });
+
+      // Bookmark feature with delete
+      function renderBookmarks() {
+        const bookmarks = JSON.parse(localStorage.getItem(key + '_bookmarks') || '[]');
+        bookmarksList.innerHTML = '';
+        bookmarks.forEach((t, idx) => {
+          const li = document.createElement('li');
+          li.className = 'bookmark-time';
+          li.innerHTML = `
+            <button class='text-cyan-700' data-time='${t}'>${formatTime(t)}</button>
+            <span class='delete-bookmark' data-index='${idx}'>×</span>
+          `;
+          li.querySelector('button').onclick = () => { 
+            video.currentTime = t; 
+            video.play(); 
+          };
+          li.querySelector('.delete-bookmark').onclick = (e) => {
+            e.stopPropagation();
+            bookmarks.splice(idx, 1);
+            localStorage.setItem(key + '_bookmarks', JSON.stringify(bookmarks));
+            renderBookmarks();
+          };
+          bookmarksList.appendChild(li);
+        });
+      }
+      function formatTime(sec) {
+        const m = Math.floor(sec/60), s = Math.floor(sec%60);
+        return `${m}:${s.toString().padStart(2,'0')}`;
+      }
+      bookmarkBtn.addEventListener('click', () => {
+        const bookmarks = JSON.parse(localStorage.getItem(key + '_bookmarks') || '[]');
+        bookmarks.push(Math.floor(video.currentTime));
+        localStorage.setItem(key + '_bookmarks', JSON.stringify(bookmarks));
+        renderBookmarks();
+      });
+      renderBookmarks();
+      showBtn.addEventListener('click', () => {
+        area.classList.remove('hidden');
+        label.classList.remove('hidden');
+        showBtn.classList.add('hidden');
+      });
+      hideBtn.addEventListener('click', () => {
+        area.classList.add('hidden');
+        label.classList.add('hidden');
+        showBtn.classList.remove('hidden');
+      });
+    }
+    setupNotes('notes1', 'videoNotes1', 'saved1', 'expand1', 'download1', 'clear1', 'showNotes1', 'notesArea1', 'notesLabel1', 'hideNotes1', 'video1', 'bookmark1', 'bookmarksList1', 'highlight1', 'removeHighlight1', 'highlightColor1');
+    setupNotes('notes2', 'videoNotes2', 'saved2', 'expand2', 'download2', 'clear2', 'showNotes2', 'notesArea2', 'notesLabel2', 'hideNotes2', 'video2', 'bookmark2', 'bookmarksList2', 'highlight2', 'removeHighlight2', 'highlightColor2');
+    setupNotes('notes3', 'videoNotes3', 'saved3', 'expand3', 'download3', 'clear3', 'showNotes3', 'notesArea3', 'notesLabel3', 'hideNotes3', 'video3', 'bookmark3', 'bookmarksList3', 'highlight3', 'removeHighlight3', 'highlightColor3');
+    document.getElementById('exportAllNotes').onclick = function() {
+      let all = '';
+      for (let i=1; i<=3; ++i) {
+        all += `Lesson ${i} Notes:\n` + (localStorage.getItem('videoNotes'+i)||'') + '\n\n';
+      }
+      const blob = new Blob([all], {type: 'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'AllNotes.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+  </script>
+</body>
+</html> 
